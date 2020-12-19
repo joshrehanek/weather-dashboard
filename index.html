@@ -12,34 +12,42 @@
 </head>
 
 <body>
-
     <div class="bg-dark pt-2 pb-2">
         <div class="container">
             <h1 class="text-center text-white">Weather On Demand</h1>
         </div>
     </div>
-
     <div class="container-fluid">
         <div class="row">
-            <div id="city-list" class="col-lg-3 bg-light pt-3 pb-3">
+            <div id="city-list" class="col-md-3 bg-light pt-3 pb-3">
                 <h3>Demand A City:</h3>
                 <form id="city-form">
                     <input id="search-city" type="text" class="form-control" placeholder="City">
                     <button id="find-btn" class="btn btn-primary" type="submit">Demand</button>
                 </form>
+                <ul class="city-history"></ul>
+            </div>
+            <div id="city-info" class="col-md-9 bg-light pt-3 pb-3">
+                <div class="card" style="width: 28rem;">
+                    <ul class="list-group list-group-flush">
+                        <div class="city-card">
+                            <div class="city"></div>
+                            <img id="icon">
+                        </div>
+                        <div class="temp"></div>
+                        <div class="wind"></div>
+                        <div class="humidity"></div>
+                        <div class="uv-index"></div>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container-fluid">
-        <div class="city"></div>
-        <div class="temp"></div>
-        <div class="wind"></div>
-        <div class="humidity"></div>
-        <div class="uv-index"></div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="./script.js"></script>
+    <div class="container-fluid">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="./script.js"></script>
 </body>
 
 </html>
