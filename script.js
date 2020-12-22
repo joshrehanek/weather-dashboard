@@ -15,11 +15,12 @@ $(document).ready(function () {
 
   $("#find-btn").on("click", function (event) {
     let cityName = $('#search-city').val();
+
     event.preventDefault()
     $(".city-card").show();
     $(".forecast").show();
     currentWeather(cityName);
-    fiveDayForecast();
+    fiveDayForecast(cityName);
     cityHistory(cityName);
     addToLocalStorage(cityName);
     
@@ -37,7 +38,6 @@ function addToLocalStorage(cityName) {
 function cityHistory(cityName) {
   let li = $('<li>').addClass("list-group-item list-group-item-action").text(cityName).attr('value', cityName);
   $('.city-history').append(li);
-
 }
 
 //function to display weather info
@@ -67,25 +67,21 @@ function currentWeather(cityName) {
     axios.get(uvURL)
       .then(function (response) {
         console.log(response);
-        $(".uv-index").text(`UV Index: ${response.data.value}`)
+        let uvIndex = response.data.value;
+        let uvIndexEl = $('.uv-index');
+        $(".uv-index").text(`UV Index: ${uvIndex}`);
+
+        if (uvIndex <= 2) {
+          $(uvIndexEl).addClass("badge badge-pill badge-success")
+        } else if (uvIndex > 2.99 && uvIndex <= 5.99) {
+          $(uvIndexEl).addClass("badge badge-pill badge-warning")
+        } else if (uvIndex >= 6) {
+          $(uvIndexEl).addClass("badge badge-pill badge-danger")
+        }
 
       });
-
   });
 }
-
-// function uvIndex(lat, lon) {
-
-//   $.ajax({
-//     url: uvURL,
-//     method: "GET"
-//   }).then(function (response) {
-//     console.log(response);
-//       $(".uv-index").text(`UV Index: ${response.value}`)
-
-
-//   });
-// }
 
 function fiveDayForecast(cityName) {
   console.log('clicked', cityName);
@@ -97,11 +93,7 @@ function fiveDayForecast(cityName) {
     url: forecastURL,
     method: "GET"
   }).then(function (response) {
-    //  variable declarations to extract info from object
-    let cityID = response.data.id
-    console.log(response);
-    console.log(cityID);
-
+   console.log(response);
     //  build cards with response data
     //for loop through cards.length i=5; i < 40 ; i+=8
     //40 total
