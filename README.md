@@ -43,7 +43,7 @@ THEN I am presented with the last searched city forecast
 
 ## Home Page
 
-![Home Page](assets\images\weather-dasboard.png)
+![Home Page](.\assets\images\weather-dasboard.png)
 
 ## City Search
 
