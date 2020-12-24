@@ -43,11 +43,11 @@ THEN I am presented with the last searched city forecast
 
 ## Home Page
 
-![Home Page](./assets/images/weather-dashboard.png)
+![Home Page](assets\images\weather-dasboard.png)
 
-## Question 1
+## City Search
 
-![City Search]./assets/images/weather-dashboard-search.png)
+![City Search](./assets/images/weather-dashboard-search.png)
 
 ## Technologies
 
