@@ -18,14 +18,23 @@ $(document).ready(function () {
     event.preventDefault()
     $(".city-card").show();
     $(".forecast").show();
-    // forecastEl.empty();
     currentWeather(cityName);
     fiveDayForecast(cityName);
     cityHistory(cityName);
     addToLocalStorage(cityName);
     
   })
-})
+
+  $("li").on("click", function (event) {
+    console.log("clicked");
+    event.preventDefault()
+    let pastCity = $(this).val();
+    console.log(pastCity)
+    currentWeather(pastCity);
+    
+    })
+    
+
 
 function addToLocalStorage(cityName) {
   let history = JSON.parse(window.localStorage.getItem('history')) || [];
@@ -93,7 +102,7 @@ function fiveDayForecast(cityName) {
   }).then(function (response) {
    console.log(response);
 
-   let forecastTitle = $('<h2>').addClass('mt-3').text('5 Day Forecast');
+   let forecastTitle = $('<h2>').addClass('grid-x grid-margin-x col-md-9 mt-3').text('5 Day Forecast');
    $('#forecast-title').append(forecastTitle);
 
     for (let i = 4; i < 40; i+=8) {
@@ -103,9 +112,14 @@ function fiveDayForecast(cityName) {
       let forecastTemp = $('<p>').text(`Temp: ${response.list[i].main.temp}`);
       let forecastHumidity = $('<p>').text(`Humidity: ${response.list[i].main.humidity}`);
       card.append(forecastDate, forecastIcon, forecastTemp, forecastHumidity);
+      
       $('#forecast-cards').append(card);
     }
   });
 }
+})
+
+
+
 
 // array.indexof(i) ===== -1; doesnt exist in local array localStorage
